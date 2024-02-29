@@ -119,14 +119,14 @@ autoCenter:false,
 });
 $('#flipbook').css('border','0px solid red') 
 
-$('#flipbook').css('margin-left','-75%') 
+$('#flipbook').css('margin-left','-80%') 
 $('#flipbook').css('margin-top','25%') 
 }
 if(w>h){//¶¶¶¶¶
 $('#flipbook').turn({
 width:W*.75,
 height:H*.75,
-autoCenter:true,
+autoCenter:false,
 });
 $('#flipbook').css('border','0px solid red') 
 setInterval(function(){
@@ -158,36 +158,129 @@ $('#flipbook').click(function(e) {
         x: e.pageX - $(this).offset().left,
         y: e.pageY - $(this).offset().top
     };
-this.src='0.png';
 //alert(pos.x);
 });
 
 img=new Image();
-img.src='0.png';
+img.src='left.png';
 document.body.appendChild(img);
 img.style=`
 z-index:100000;
 position:absolute;
 left:0%;
-top:50%;
+top:35%;
 width:10%;
-height:10%;
+height:20%;
 `;
+img.onclick=function(){
+$('#flipbook').turn('previous');
+}
 img=new Image();
-img.src='0.png';
+img.src='right.png';
 document.body.appendChild(img);
 img.style=`
 z-index:1000000;
 position:absolute;
 left:90%;
-top:50%;
+top:35%;
 width:10%;
-height:10%;
+height:20%;
 `;
+img.onclick=function(){
+$('#flipbook').turn('next');
+}
+
+bgm=new Audio('bg.mp3');
+LOGO=function(){
+bgm.play();
 
 
 
+img=new Image();
+img.src='logo.png';
+document.body.appendChild(img);
+img.i=.1;
+img.sw=1;
+setInterval(function(){
+if(img.sw==1){
+w=window.innerWidth;
+h=window.innerHeight;
+a=(w+h)/4;
+img.i=img.i*1.01;
 
+ww=a*img.i
+hh=a*img.i
+
+
+ww=w*img.i
+hh=(w*img.i)*(w/h)
+
+ww/=2,hh/=2
+
+img.style=`
+z-index:100000;
+position:absolute;
+left:`+((50)-(ww/2))+`%;
+top:`+((50)-(hh/2))+`%;
+width:`+(ww)+`%;
+height:`+(hh)+`%;
+aspect-ratio:1/1;
+opacity:`+(1-(img.i/2))+`;
+`;
+img2.style=`
+z-index:10000;
+position:absolute;
+left:0%;
+top:0%;
+width:100%;
+height:100%;
+opacity:`+(1-(img.i/10))+`;
+`;
+if(1-(img.i/2)<0){
+img.sw=0;
+document.body.removeChild(img);
+document.body.removeChild(img2);
+}
+}
+});
+
+}
+
+OK=function(){
+LOGO();
+document.body.removeChild(img1);
+}
+
+w=window.innerWidth;
+h=window.innerHeight;
+a=(w+h)/4;
+ww=((a/w)*100)+'';
+hh=((a/h)*100)+'';
+img1=new Image();
+img1.src='help.png';
+document.body.appendChild(img1);
+img1.style=`
+z-index:1000000;
+position:absolute;
+left:`+(50-(ww/2))+`%;
+top:`+(50-(hh/2))+`%;
+width:`+ww+`%;
+height:`+hh+`%;
+`;
+img1.onclick=OK;
+
+img2=new Image();
+img2.src='dark.png';
+document.body.appendChild(img2);
+img2.style=`
+z-index:100000;
+position:absolute;
+left:0%;
+top:0%;
+width:`+w+`%;
+height:`+h+`%;
+`;
+img2.onclick=OK;
 
 
 </script></body></html>
