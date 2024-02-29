@@ -85,18 +85,6 @@ VV.appendChild(v);
 }}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 var sfx=[],sfxi=0;
 for(var i=0;i<20;i++){
 sfx[i]=new Audio('page.mp3');
@@ -122,20 +110,8 @@ h=window.innerHeight,
 W=(w+h)/(2)
 H=(h+w)/(3)
 
-if(w>h){
-$('#flipbook').turn({
-width:W*.75,
-height:H*.75,
-autoCenter:true,
-});
-$('#flipbook').css('border','2px solid red') 
 
-setInterval(function(){
-$('#flipbook').css('margin-left','245') 
-},100);
-}
-
-if(w<h){
+if(w<h){//¶¶¶¶¶¶
 $('#flipbook').turn({
 width:W*1.2,
 height:H*1.2,
@@ -146,6 +122,35 @@ $('#flipbook').css('border','2px solid red')
 $('#flipbook').css('margin-left','-75%') 
 $('#flipbook').css('margin-top','25%') 
 }
+if(w>h){//¶¶¶¶¶
+$('#flipbook').turn({
+width:W*.75,
+height:H*.75,
+autoCenter:true,
+});
+$('#flipbook').css('border','2px solid red') 
+
+setInterval(function(){
+$('#flipbook').css('margin-left','0%');
+v=(W*.75)/4
+vv=(v/w)*100
+$('#flipbook').css('margin-left',(vv)+'%');
+if($('#flipbook').turn('page')>1
+){
+v=(W*.75)/2
+vv=(v/w)*100
+$('#flipbook').css('margin-left',(vv)+'%');
+}
+if(
+$('#flipbook').turn('page')>9
+){
+v=(W*.75)/1.5
+vv=(v/w)*100
+$('#flipbook').css('margin-left',(vv)+'%');
+}
+});
+$('#flipbook').css('margin-top','2%');
+}
 
 
 
@@ -155,65 +160,17 @@ $('#flipbook').click(function(e) {
         y: e.pageY - $(this).offset().top
     };
 this.src='0.png';
-alert(pos.x);
+//alert(pos.x);
 });
 
 
-//$('#flipbook').css('aspectRatio','3/1');
-
-
-/*
-setTimeout(function(){
-if(window.innerWidth<window.innerHeight){
-
-$('#flipbook').turn({
-width:.65*window.innerWidth,
-height:.65*window.innerHeight*.35,
-});
-
-$('#flipbook').css('margin-left','-85%');
-$('#flipbook').css('margin-top','30%');
 
 
 
-}
-
-else{
-
-$('#flipbook').turn({
-width:.65*window.innerWidth*.75,
-height:.65*window.innerHeight,
-//autoCenter:true
-});
-
-$('#flipbook').css('border','2px solid red') 
-
-
-setInterval(function(){
-
-$('#flipbook').css('margin-left','0%');
-
-if(
-$('#flipbook').turn('page')>1
-){
-$('#flipbook').css('margin-left','18.28125%');
-}
-if(
-$('#flipbook').turn('page')>9
-){
-$('#flipbook').css('margin-left','36.5625%');
-}
-
-});
-$('#flipbook').css('margin-top','2%');
-
-}
 
 
 
-},1000);
-*/
 
 
 
-</script></body></html>
+</script></body></html> 
