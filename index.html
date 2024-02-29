@@ -16,6 +16,15 @@ height: 100%;
 <script>
 document.body.background='table.png';
 
+
+
+
+
+
+
+
+
+
 V0=document.createElement("div");
 V0.className='container';
 document.body.appendChild(V0);
@@ -85,18 +94,9 @@ VV.appendChild(v);
 }}
 }
 
-var sfx=[],sfxi=0;
-for(var i=0;i<20;i++){
-sfx[i]=new Audio('page.mp3');
-}
-SFXPLAY=function(){
-sfxi++;if(sfxi>=20){sfxi=0;}sfx[sfxi].play();
-}
 
-$("#flipbook").bind("turning", function(event, page, view) { 
-    console.log("Page: "+page);
-SFXPLAY();
-});
+
+
 
 
 
@@ -115,7 +115,7 @@ if(w<h){//¶¶¶¶¶¶
 $('#flipbook').turn({
 width:W*1.2,
 height:H*1.2,
-autoCenter:false,
+autoCenter:false,gradient:true
 });
 $('#flipbook').css('border','0px solid red') 
 
@@ -123,20 +123,21 @@ $('#flipbook').css('margin-left','-80%')
 $('#flipbook').css('margin-top','25%') 
 }
 if(w>h){//¶¶¶¶¶
+size=1;
 $('#flipbook').turn({
-width:W*.75,
-height:H*.75,
+width:(W*.75)*size,
+height:(H*.75)*size,
 autoCenter:false,
 });
 $('#flipbook').css('border','0px solid red') 
 setInterval(function(){
 $('#flipbook').css('margin-left','0%');
-v=(W*.75)/4
+v=(W*.75)/6
 vv=(v/w)*100
 $('#flipbook').css('margin-left',(vv)+'%');
 if($('#flipbook').turn('page')>1
 ){
-v=(W*.75)/2
+v=(W*.75)/2.374
 vv=(v/w)*100
 $('#flipbook').css('margin-left',(vv)+'%');
 }
@@ -148,9 +149,41 @@ vv=(v/w)*100
 $('#flipbook').css('margin-left',(vv)+'%');
 }
 });
-$('#flipbook').css('margin-top','2%');
+$('#flipbook').css('margin-top',(2)+'%');
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var sfx=[],sfxi=0;
+for(var i=0;i<20;i++){
+sfx[i]=new Audio('page.mp3');
+}
+SFXPLAY=function(){
+sfxi++;if(sfxi>=20){sfxi=0;}sfx[sfxi].play();
+}
+
+$("#flipbook").bind("turning", function(event, page, view) { 
+    console.log("Page: "+page);
+SFXPLAY();
+});
 
 
 $('#flipbook').click(function(e) {
@@ -161,11 +194,22 @@ $('#flipbook').click(function(e) {
 //alert(pos.x);
 });
 
+
+
+
+
+
+
+
+
+
+
+
 img=new Image();
 img.src='left.png';
 document.body.appendChild(img);
 img.style=`
-z-index:100000;
+z-index:50;
 position:absolute;
 left:0%;
 top:35%;
@@ -179,7 +223,7 @@ img=new Image();
 img.src='right.png';
 document.body.appendChild(img);
 img.style=`
-z-index:1000000;
+z-index:51;
 position:absolute;
 left:90%;
 top:35%;
@@ -218,7 +262,7 @@ hh=(w*img.i)*(w/h)
 ww/=2,hh/=2
 
 img.style=`
-z-index:100000;
+z-index:1001;
 position:absolute;
 left:`+((50)-(ww/2))+`%;
 top:`+((50)-(hh/2))+`%;
@@ -228,7 +272,7 @@ aspect-ratio:1/1;
 opacity:`+(1-(img.i/2))+`;
 `;
 img2.style=`
-z-index:10000;
+z-index:1000;
 position:absolute;
 left:0%;
 top:0%;
@@ -260,7 +304,7 @@ img1=new Image();
 img1.src='help.png';
 document.body.appendChild(img1);
 img1.style=`
-z-index:1000000;
+z-index:1002;
 position:absolute;
 left:`+(50-(ww/2))+`%;
 top:`+(50-(hh/2))+`%;
@@ -273,7 +317,7 @@ img2=new Image();
 img2.src='dark.png';
 document.body.appendChild(img2);
 img2.style=`
-z-index:100000;
+z-index:1000;
 position:absolute;
 left:0%;
 top:0%;
