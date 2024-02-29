@@ -1,25 +1,19 @@
 <!doctype html>
 <head>
+<style>
+body{
+overflow:hidden;
+width: 100%;
+height: 100%;
+  margin: auto;
+}
+</style>
 <script type="text/javascript" src="jquery.min.1.7.js"></script>
 <script type="text/javascript" src="turn.min.js"></script>
 </head>
 <body>
 <script>
 document.body.background='table.png';
-/*
-style = document.createElement('style');
-style.innerHTML = `
-html,
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;height: 100%;
-  margin: auto;
-}
-`;
-document.head.appendChild(style);
-*/
 
 V0=document.createElement("div");
 V0.className='container';
@@ -109,38 +103,17 @@ sfx[i]=new Audio('page.mp3');
 SFXPLAY=function(){
 sfxi++;if(sfxi>=20){sfxi=0;}sfx[sfxi].play();
 }
+
 $("#flipbook").bind("turning", function(event, page, view) { 
     console.log("Page: "+page);
 SFXPLAY();
 });
 
 
-/*
-
-$('.container').css({
-transform: 'scale('+(175/100)+')', // set zoom
-transformOrigin: '105% 50%' // set transform scale base
-});
-
-$('.embed').css('margin-top','75%');
 
 
 
 
-$('#flipbook').click(function(e) {
-    var pos = {
-        x: e.pageX - $(this).offset().left,
-        y: e.pageY - $(this).offset().top
-    };
-    $('#flipbook').zoom('zoomIn', pos);
-});*/
-/*
-
-setInterval(function(){
-document.body.style.zoom='100%';
-window.scrollTo({ top: 0, behavior: 'smooth' })
-},100);
-*/
 
 w=window.innerWidth
 h=window.innerHeight,
@@ -174,6 +147,14 @@ $('#flipbook').css('margin-left','-75%')
 
 
 
+$('#flipbook').click(function(e) {
+    var pos = {
+        x: e.pageX - $(this).offset().left,
+        y: e.pageY - $(this).offset().top
+    };
+this.src='0.png';
+alert(pos.x);
+});
 
 
 //$('#flipbook').css('aspectRatio','3/1');
